@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.0.4'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'project.janbarry'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+}
+
+def lombokVersion = '1.18.26'
+
+dependencies {
+    // implementation
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // developer tools
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'com.h2database:h2'
+
+    // lombok
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+    testCompileOnly "org.projectlombok:lombok:$lombokVersion"
+    testAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
